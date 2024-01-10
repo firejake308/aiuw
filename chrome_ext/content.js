@@ -55,8 +55,3 @@ function injectButton() {
 
 // Inject the button when the page is loaded
 waitForElementToLoad('explanation-container', injectButton);
-
-
-/**
- * UWorld has great explanations, but if you're still confused, maybe AI could generate a custom explanation to clarify your specific point of confusion.
- */
