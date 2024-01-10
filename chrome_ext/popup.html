@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Extension Popup</title>
+    <script src="pocketbase.umd.js"></script>
+    <script src="popup.js"></script>
+    <style>
+        input {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Login</h2>
+    <label for="email">Email:</label>
+    <input type="text" id="email" placeholder="Enter your email">
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <div style="display:flex; justify-content: space-between;">
+        <button id="signupBtn">Signup</button>
+        <button id="loginBtn">Login</button>
+    </div>
+
+    <div id="notificationArea" style="visibility: hidden;">
+        Logged in successfully!
+    </div>
+</body>
+
+</html>

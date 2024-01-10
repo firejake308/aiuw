@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for aiuw-summer-water-3105 on 2024-01-09T21:33:06-06:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "aiuw-summer-water-3105"
+primary_region = "dfw"
+
+[build.args]
+  PB_VERSION = "0.20.5"
+
+[[mounts]]
+  source = "pb_data"
+  destination = "/pb/pb_data"
+  auto_extend_size_threshold = 0
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
