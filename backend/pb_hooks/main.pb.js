@@ -75,8 +75,9 @@ routerAdd('POST', '/query', (c) => {
     return c.json(200, { message: '' + reply, credits: credits - 1 });
 })
 
-routerAdd('POST', '/privacy', (c) => {
+routerAdd('GET', '/privacy', (c) => {
     return c.string(200, "The only private information we collect is your email"
-        + ", which we store in order to give everyone free credits. Email"
+        + ", which we store in order to give everyone free credits. We won't"
+        + " give out your email address to anyone. Email"
         + " admin@chat-esp.xyz if you have any other questions.");
 })

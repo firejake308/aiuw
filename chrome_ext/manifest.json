@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "AI Helper for UWorld",
-    "version": "1.0",
+    "version": "1.1",
     "description": "get more personalized explanations for your UWorld questions",
     "permissions": [
         "activeTab",

@@ -39,6 +39,9 @@ function injectButton() {
     }).then(res => {
       responseArea.innerText = '' + res.message + (res.credits ? `\n\n${res.credits} credits remaining` : '');
       button.disabled = false;
+    }).catch(() => {
+      responseArea.innerText = 'An error occurred';
+      button.disabled = false;
     });
   });
 
