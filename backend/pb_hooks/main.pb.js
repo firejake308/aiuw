@@ -12,16 +12,16 @@ onRecordAfterConfirmVerificationRequest((e) => {
 routerAdd('POST', '/query', (c) => {
     const user = c.get("authRecord");
     if (!user) {
-        return c.json(403, {message: "Click the extension icon in the top right to login first"});
+        return c.json(403, { message: "Click the extension icon in the top right to login first" });
     }
     if (!user.verified) {
         console.log("user not verified");
-        return c.json(400, {message: "You need to verify your email first!"});
+        return c.json(400, { message: "You need to verify your email first!" });
     }
     const numCreditsRecord = $app.dao().findFirstRecordByData("credits", "email", user.email())
     const credits = numCreditsRecord.getInt('credits');
     if (credits <= 0) {
-        return c.json(400, {message:"You don't have any credits left. DM me"})
+        return c.json(400, { message: "You don't have any credits left. DM me" })
     }
 
     numCreditsRecord.set("credits", credits - 1);
@@ -50,9 +50,9 @@ routerAdd('POST', '/query', (c) => {
   `;
 
     const res = $http.send({
-        url:    "https://api.endpoints.anyscale.com/v1/chat/completions",
+        url: "https://api.endpoints.anyscale.com/v1/chat/completions",
         method: "POST",
-        body:   JSON.stringify({
+        body: JSON.stringify({
             model: "mistralai/Mixtral-8x7B-Instruct-v0.1", // "Open-Orca/Mistral-7B-OpenOrca"
             messages: [
                 { role: "system", content: systemPrompt },
@@ -67,10 +67,16 @@ routerAdd('POST', '/query', (c) => {
         }
     });
     const res_json = res.json;
-    
+
     console.log(JSON.stringify(res_json));
     const reply = res_json.choices[0].message.content;
     console.log(res_json.usage.total_tokens);
 
-    return c.json(200, {message: '' + reply, credits: credits - 1});
+    return c.json(200, { message: '' + reply, credits: credits - 1 });
+})
+
+routerAdd('POST', '/privacy', (c) => {
+    return c.string(200, "The only private information we collect is your email"
+        + ", which we store in order to give everyone free credits. Email"
+        + " admin@chat-esp.xyz if you have any other questions.");
 })
